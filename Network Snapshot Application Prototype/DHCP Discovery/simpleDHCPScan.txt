@@ -1,0 +1,14 @@
+#Example to consult when needet
+Starting Nmap 7.60 ( https://nmap.org ) at 2018-08-23 12:15 UTC
+Pre-scan script results:
+| broadcast-dhcp-discover:
+|   Response 1 of 1:
+|     IP Offered: 10.0.201.111
+|     DHCP Message Type: DHCPOFFER
+|     Server Identifier: 10.0.201.106
+|     IP Address Lease Time: 5m00s
+|     Subnet Mask: 255.255.255.0
+|     Router: 10.0.201.1
+|     Domain Name Server: 10.0.201.1
+|_    Domain Name: wlan.local
+Nmap done: 0 IP addresses (0 hosts up) scanned in 1.54 seconds
