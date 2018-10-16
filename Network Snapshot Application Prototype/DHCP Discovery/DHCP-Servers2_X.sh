@@ -13,7 +13,7 @@ if ! [ -x "$(command -v nmap)" ]; then
         echo "nmap is not installed."
         echo "nmap will be installed now."
         apt-get update
-        apt-get install nmap
+        apt install nmap
 fi
 echo "scanning..."
 for i in {1..10}
