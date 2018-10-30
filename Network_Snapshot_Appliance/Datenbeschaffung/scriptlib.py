@@ -20,6 +20,7 @@ def runScripts():
 def ipDiscovery():
     
     netmask = getNetmask()
+    ##TODO, Sven: Scan network
     
     
 return data
@@ -28,8 +29,8 @@ return data
 
 def dhcpDiscovery():
     
-    cmd = "['bash', 'bashscripts/test.sh]"
-    data = execCommand(cmd)
+    cmd = "['bash', 'bashscripts/dhcp_discovery.sh]"
+    data = execScpt(cmd)
     
     return data
     
@@ -42,7 +43,7 @@ def dnsDiscovery():
 
 
 def createOutput(allIPs, dhcpData, dnsData):
-    
+     
     
     return output
 
@@ -54,7 +55,7 @@ def getNetmask():
 
 
 #Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
-def execCommand(cmd):
+def execScpt(cmd):
     
     result = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     retVal = result.stdout.decode('utf-8')

@@ -1,20 +1,19 @@
 #!/usr/bin/python3.5
 #Testfile
 
-text = getNetmask()
-print(text)
+#import ipaddress
+
+#def getNetmask():
+#    ipaddress.ipnetwork
 
 
+#text = getNetmask()
+#print(text)
 
-def getNetmask():
-    cmd = "['ifconfig']"
-    result = execCommand(cmd)
-    netmask = result
-    return netmask
- 
- 
-def execCommand(cmd):
-    result = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    retVal = result.stdout.decode('utf-8')
-    
-    return retVal
+##wenn response == 0 ist IP erreichbar
+#Quelle: https://stackoverflow.com/questions/2953462/pinging-servers-in-python
+import os
+
+ip = "8.8.8.8"
+response = os.system("ping -c 1 " + ip)
+print(str(response))
