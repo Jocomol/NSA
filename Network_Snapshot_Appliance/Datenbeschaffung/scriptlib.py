@@ -16,19 +16,23 @@ def runScripts():
     return output
 
 
+
 def ipDiscovery():
     
-    cmd = "['bash', 'bashscripts/test.sh]"
-    result = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    data = result.stdout.decode('utf-8')
+    netmask = getNetmask()
     
-    return data
+    
+return data
+
 
 
 def dhcpDiscovery():
     
+    cmd = "['bash', 'bashscripts/test.sh]"
+    data = execCommand(cmd)
     
     return data
+    
 
 
 def dnsDiscovery():
@@ -41,3 +45,18 @@ def createOutput(allIPs, dhcpData, dnsData):
     
     
     return output
+
+
+def getNetmask():
+    
+    
+    return netmask
+
+
+#Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
+def execCommand(cmd):
+    
+    result = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    retVal = result.stdout.decode('utf-8')
+    
+    return retVal
