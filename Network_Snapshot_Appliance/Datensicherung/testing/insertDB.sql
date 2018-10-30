@@ -3,8 +3,8 @@ INSERT INTO query (date, wanconnection, domainname, match)
 VALUES
 ("30.10.2018",1,"domain.local",1);
 
-/*Insert all ip's*/
-INSERT INTO ip (ip, hostname, devicetype, deviceos, dhcp_ip, dns_ip, query_id)
+/*Insert all ips*/
+INSERT INTO ip (ip, hostname, devicetype, deviceos, dhcp_id, dns_id, query_id)
 VALUES
 ("192.168.1.1","router.local",NULL,NULL,NULL,NULL,1,),
 ("192.168.1.2","client.local","DELL","windows 10",NULL,NULL,1,)
