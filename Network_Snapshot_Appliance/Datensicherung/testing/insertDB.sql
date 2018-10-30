@@ -6,11 +6,11 @@ VALUES
 /*Insert all ips*/
 INSERT INTO ip (ip, hostname, devicetype, deviceos, dhcp_id, dns_id, query_id)
 VALUES
-("192.168.1.1","router.local",NULL,NULL,NULL,NULL,1,),
-("192.168.1.2","client.local","DELL","windows 10",NULL,NULL,1,)
-("192.168.1.3","dns.local","Mainframe","UBUNTU 18.1",NULL,NULL,1,),
-("192.168.1.4","dhcp.local","Mainframe","Ubuntu 18.1",NULL,NULL,1,),
-("192.168.1.69","intruder.local","HP","Kali Linux",NULL,NULL,1,);
+("192.168.1.1","router.local",NULL,NULL,NULL,NULL,1),
+("192.168.1.2","client.local","DELL","windows 10",NULL,NULL,1),
+("192.168.1.3","dns.local","Mainframe","UBUNTU 18.1",NULL,NULL,1),
+("192.168.1.4","dhcp.local","Mainframe","Ubuntu 18.1",NULL,NULL,1),
+("192.168.1.69","intruder.local","HP","Kali Linux",NULL,NULL,1);
 
 /* Insert ROles */
 INSERT INTO ip_role (ip_id, role_id)
