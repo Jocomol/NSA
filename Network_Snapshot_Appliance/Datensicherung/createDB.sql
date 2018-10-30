@@ -19,7 +19,7 @@ role TEXT
 
 CREATE TABLE query(
 id INTEGER PRIMARY KEY NOT NULL,
-date INTEGER NOT NULL,
+date TEXT NOT NULL,
 wanconnection INTEGER NOT NULL,
 domainname TEXT NOT NULL,
 match INTEGER
@@ -46,5 +46,12 @@ role_id INTEGER,
 FOREIGN KEY (ip_id) REFERENCES ip(id),
 FOREIGN KEY (role_id) REFERENCES role(id)
 );
+
+INSERT INTO ip_role (id, role) 
+VALUES
+(1,"Router"),
+(2,"DNS"),
+(3,"DHCP");
+
 
 
