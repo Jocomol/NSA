@@ -1,0 +1,12 @@
+PRAGMA table_info(dhcp);
+SELECT * FROM dhcp;
+PRAGMA table_info(dns);
+SELECT * FROM dns;
+PRAGMA table_info(ip);
+SELECT * FROM ip;
+PRAGMA table_info(ip_role);
+SELECT * FROM ip_role;
+PRAGMA table_info(query);
+SELECT * FROM query;
+PRAGMA table_info(role);
+SELECT * FROM role;
