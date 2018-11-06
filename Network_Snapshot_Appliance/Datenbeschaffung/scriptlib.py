@@ -37,6 +37,10 @@ def dhcpDiscovery():
 
 def dnsDiscovery():
     
+    cmd = "['bash', 'bashscripts/dns_discovery.sh]"
+    ips = execScpt(cmd)
+    
+    
     
     return data
 
