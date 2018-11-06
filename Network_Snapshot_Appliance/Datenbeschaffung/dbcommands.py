@@ -4,3 +4,4 @@
 def insertRun(data):
     #Insert Data according to ERD using functions
     
+    return data

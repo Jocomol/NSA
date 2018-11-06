@@ -30,9 +30,9 @@ do
         if ! [ $i -eq 8 ];
         then
                 line=$(echo $line | cut -d: -f2 | tr -d '[:space:]')
-                echo "$line" >> /tmp/NSA/dhcp/dhcp2
+                echo "$line" #>> /tmp/NSA/dhcp/dhcp2
         else
-                echo "" >> /tmp/NSA/dhcp/dhcp2
+                echo "" #>> /tmp/NSA/dhcp/dhcp2
                 i=0
         fi
 done < /tmp/NSA/dhcp/dhcp1

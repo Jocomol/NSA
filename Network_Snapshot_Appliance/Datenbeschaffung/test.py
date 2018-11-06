@@ -12,8 +12,23 @@
 
 ##wenn response == 0 ist IP erreichbar
 #Quelle: https://stackoverflow.com/questions/2953462/pinging-servers-in-python
-import os
+#import os
 
-ip = "8.8.8.8"
-response = os.system("ping -c 1 " + ip)
-print(str(response))
+#ip = "8.8.8.8"
+#response = os.system("ping -c 1 " + ip)
+#print(str(response))
+
+
+
+#parsing
+
+
+
+
+
+import scriptlib
+
+cmd = "['bash', '/home/vmadmin/Dokumente/Modul306/NSA/Network_Snapshot_Appliance/Datenbeschaffung/bashscripts/dns_discovery.sh']"
+data = scriptlib.execScpt(cmd)
+
+print(data)

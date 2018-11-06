@@ -22,8 +22,7 @@ def ipDiscovery():
     netmask = getNetmask()
     ##TODO, Sven: Scan network
     
-    
-return data
+    return data
 
 
 
@@ -42,17 +41,15 @@ def dnsDiscovery():
     return data
 
 
-def createOutput(allIPs, dhcpData, dnsData):
-     
-    
-    return output
-
-
 def getNetmask():
     
     
     return netmask
 
+def createOutput(allIPs, dhcpData, dnsData):
+     
+    
+    return output
 
 #Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
 def execScpt(cmd):
