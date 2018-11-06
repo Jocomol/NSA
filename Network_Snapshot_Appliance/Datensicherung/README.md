@@ -12,6 +12,9 @@
 - Finished InsertDB script
 - Added dummy DB script
 
+### Version 1.2
+- Removed Router from Roles list
+
 ## Scripts
 
 ### dummyData.sh
