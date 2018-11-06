@@ -47,11 +47,7 @@ FOREIGN KEY (ip_id) REFERENCES ip(id),
 FOREIGN KEY (role_id) REFERENCES role(id)
 );
 
-INSERT INTO role (id, role) 
+INSERT INTO role (id, role)
 VALUES
-(1,"Router"),
-(2,"DNS"),
-(3,"DHCP");
-
-
-
+(1,"DNS"),
+(2,"DHCP");

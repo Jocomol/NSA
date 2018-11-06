@@ -1,5 +1,5 @@
 /* Insert Query*/
-INSERT INTO query (date, wanconnection, domainname, match) 
+INSERT INTO query (date, wanconnection, domainname, match)
 VALUES
 ("30.10.2018",1,"domain.local",1);
 
@@ -15,9 +15,8 @@ VALUES
 /* Insert ROles */
 INSERT INTO ip_role (ip_id, role_id)
 VALUES
-(1,1),
-(3,2),
-(4,3);
+(3,1),
+(4,2);
 
 /* Insert DHCP entry */
 INSERT INTO dhcp (leastime, ip_offered, subnetmask, router, domainname)
@@ -27,7 +26,7 @@ VALUES
 UPDATE ip SET dhcp_id = 1 WHERE ip = "192.168.1.4";
 
 /*Insert DNS entry*/
-INSERT INTO DNS (working)
+INSERT INTO dns (working)
 VALUES
 (1);
 
