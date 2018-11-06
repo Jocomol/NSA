@@ -28,7 +28,7 @@
 
 import scriptlib
 
-cmd = "['bash', '/home/vmadmin/Dokumente/Modul306/NSA/Network_Snapshot_Appliance/Datenbeschaffung/bashscripts/dns_discovery.sh']"
+cmd = "./bashscripts/dns_discovery.sh"
 data = scriptlib.execScpt(cmd)
 
 print(data)

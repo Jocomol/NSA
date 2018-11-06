@@ -2,6 +2,10 @@
 #Version 1.0
 #Author: Joel Meier
 #Contact: joelmeie08@gmail.com
+#Output like this:
+#8.8.8.8 True
+#8.8.4.4 True
+#1.2.3.4 False
 
 
 #prepare
@@ -28,5 +32,5 @@ do
 
 done < /tmp/NSA/dns/dns3
 
-rm output.txt
-cat /tmp/NSA/dns/dns2 >> output.txt
+#rm output.txt
+#cat /tmp/NSA/dns/dns2 >> output.txt
