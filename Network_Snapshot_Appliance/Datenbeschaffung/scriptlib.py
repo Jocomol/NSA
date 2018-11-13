@@ -7,21 +7,42 @@ from subprocess import Popen, PIPE
 
 def runScripts():
     #TODO, run all scripts
-    
-    #dhcpData = dhcpDiscovery()
-    #dnsData = dnsDiscovery()
-    #allIPs = ipDiscovery()
-    
-    #output = createOutput(allIPs, dhcpData, dnsData)
-    
+
+    allIPs = ipDiscovery()
+    dhcpData = dhcpDiscovery()
+    dnsData = dnsDiscovery()
+    print (dnsData)
+    output = createOutput(dhcpData, dnsData, ips)
+
+    return output
+
+def createOutput(dhcp, dns, ips):
+    output = []
+    merged = []
+    for i in range(len(dhcp) -1 ):
+        for k in range(len(dns) -1):
+            if dhcp[i][0] == dns[k][0]:
+                merged = dhcp[i]
+                merged[9] == dns[k][9]
+                dns.pop(k)
+                output.append(merged)
+
+    for k in range(len(dns)):
+        output.append(dns[k])
+
+    for k in range(len(ips)):
+        output.append(ips[k])
+
+
     return output
 
 
+
 def ipDiscovery():
-    
+
     ip = getIP()
     data = pingHosts(ip)
-    
+
     return data
 
 
@@ -29,26 +50,26 @@ def dhcpDiscovery():
     ##geht noch nicht
     #cmd = "['bash', 'bashscripts/dhcp_discovery.sh]"
     #data = execScpt(cmd)
-    
+
     data = dns_discovery.run()
-    
+
     return data
-    
+
 
 def dnsDiscovery():
     ##funktioniert
     #cmd = "['bash', 'bashscripts/dns_discovery.sh]"
     #data = execScpt(cmd)
-    
+
     data = dhcp_discovery.run()
-    
+
     return data
 
 
 def getIP():
-    
+
     ##TODO, Adresse von Host erhalten z.B. 192.168.220.0/255.255.255.0
-    
+
     output = subprocess.check_output(["ifconfig"]).decode()
 
     array = output.split('\n')
@@ -63,19 +84,12 @@ def getIP():
             ip = part.split(":")[1]
         if "Mask" in part:
             mask = part.split(":")[1]
-    
+
     combined = ip + "/" + mask
 
     return combined
 
 
-
-def createOutput(allIPs, dhcpData, dnsData):
-     
-     ##TODO, create Arrays gemäss Vorlage Joel
-     
-    
-    return output
 
 
 def pingHosts(ip):
@@ -89,24 +103,24 @@ def pingHosts(ip):
         if hostalive == 0:
             #reachable
             print("reachable")
-            
+
             #TODO, 2D-Array
             #[["192.168.1.1", "client",None,None,None,None,None,None,None,None],["192.168.1.2", "client",None,None,None,None,None,None,None,None]]
-            
-            
-            
+
+
+
         else:
             #unreachable
             #wird nicht benötigt
             print("unreachable")
-     
+
     return ips
 
 
 #Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
 def execScpt(cmd):
-    
+
     result = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     retVal = result.stdout.decode('utf-8')
-    
+
     return retVal
