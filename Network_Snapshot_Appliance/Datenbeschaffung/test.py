@@ -22,13 +22,30 @@
 
 #parsing
 
+#import subprocess
 
 
+#output = subprocess.check_output(["ifconfig"]).decode()
+
+#array = output.split('\n')
+
+#for item in array:
+    #if "inet addr" in item:
+        #if "addr:127" not in item:
+            #line = item.split(" ")
+
+#for part in line:
+    #if "addr" in part:
+        #ip = part.split(":")[1]
+    #if "Mask" in part:
+        #mask = part.split(":")[1]
+
+    
+#combined = ip + "/" + mask
+
+#return combined
 
 
 import scriptlib
 
-cmd = "./bashscripts/dns_discovery.sh"
-data = scriptlib.execScpt(cmd)
-
-print(data)
+print(scriptlib.ipDiscovery())
