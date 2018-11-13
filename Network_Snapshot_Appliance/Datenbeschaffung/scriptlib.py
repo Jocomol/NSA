@@ -11,7 +11,6 @@ def runScripts():
     allIPs = ipDiscovery()
     dhcpData = dhcpDiscovery()
     dnsData = dnsDiscovery()
-    print (dnsData)
     output = createOutput(dhcpData, dnsData, ips)
 
     return output
@@ -71,13 +70,15 @@ def getIP():
     ##TODO, Adresse von Host erhalten z.B. 192.168.220.0/255.255.255.0
 
     output = subprocess.check_output(["ifconfig"]).decode()
-
+    print(output)
     array = output.split('\n')
+    print(array)
 
     for item in array:
         if "inet addr" in item:
             if "addr:127" not in item:
                 line = item.split(" ")
+                print(line)
 
     for part in line:
         if "addr" in part:
@@ -124,3 +125,7 @@ def execScpt(cmd):
     retVal = result.stdout.decode('utf-8')
 
     return retVal
+
+
+
+print(runScripts())

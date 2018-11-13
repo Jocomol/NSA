@@ -3,7 +3,7 @@
 
 ##TODO Array-Format bestimmen wie Daten übergeben werdne sollen
 
-import scriptlib, dbcommands
+import scriptlib, dbcommands, DBConnector
 
 #scripts 2mal aufrufen und in vars speichern
 run1 = scriptlib.runScripts()
@@ -13,9 +13,9 @@ run2 = sriptlib.runScripts()
 goodRun = compareRuns(run1, run2)
 
 #in DB schreiben
-dbcommands.insertRun(goodRun)
+DBConnector.insertRun(goodRun)
 
 
 def compareRuns(run1, run2):
-    
+
     return goodRun
