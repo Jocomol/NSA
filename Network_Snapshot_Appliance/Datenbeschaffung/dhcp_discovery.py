@@ -33,5 +33,3 @@ def run():
         dhcpList.append(parsedDHCP)
 
     return dhcpList
-
-print(run())

@@ -2,7 +2,7 @@
 import subprocess
 import re
 def run():
-    returnlist=[[]]
+    returnlist=[]
     dnsList=[]
     for i in range(0, 1):
         output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
@@ -10,20 +10,19 @@ def run():
         dnsList.append(line)
 
     dnsList = dict.fromkeys(dnsList).keys()
-    indexlist[0]["8.8.8.8", None,None,None,None,None,None,None,None,None]]
-    indexlist[1]["8.8.4.4", None,None,None,None,None,None,None,None,None]]
-    for dns in dnsList:
-        index = 2
-        indexlist[index][dns,None,None,None,None,None,None,None,None,None]]
+    returnlist.append(["8.8.8.8", None,None,None,None,None,None,None,None,True])
+    returnlist.append(["8.8.4.4", None,None,None,None,None,None,None,None,None]) 
+    #for dns in dnsList:
+    #    index = 2
+    #    indexlist[index][dns,None,None,None,None,None,None,None,None,None]]
 
-    for dns in returnlist:
+    #for dns in returnlist:
         #nslookup
         #check dns service
 
-    return
+    return returnlist
 
 
-run()
 
 
 ## TODO Check if DNS works and create array

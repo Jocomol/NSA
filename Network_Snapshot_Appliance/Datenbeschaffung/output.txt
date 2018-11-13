@@ -1,7 +1,7 @@
 | broadcast-dhcp-discover:
 |   IP Offered: 192.168.1.114
 |   DHCP Message Type: DHCPOFFER
-|   Server Identifier: 192.168.2.1
+|   Server Identifier: 8.8.8.8
 |   IP Address Lease Time: 1 day, 0:00:00
 |   Subnet Mask: 255.255.255.0
 |   Router: 192.168.1.1
