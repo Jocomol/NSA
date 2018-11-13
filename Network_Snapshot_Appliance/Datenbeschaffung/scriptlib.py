@@ -8,9 +8,9 @@ from subprocess import Popen, PIPE
 def runScripts():
     #TODO, run all scripts
     
-    #allIPs = ipDiscovery()
     #dhcpData = dhcpDiscovery()
     #dnsData = dnsDiscovery()
+    #allIPs = ipDiscovery()
     
     #output = createOutput(allIPs, dhcpData, dnsData)
     
@@ -89,9 +89,18 @@ def pingHosts(ip):
         if hostalive == 0:
             #reachable
             print("reachable")
+            
+            #TODO, 2D-Array
+            #[["192.168.1.1", "client",None,None,None,None,None,None,None,None],["192.168.1.2", "client",None,None,None,None,None,None,None,None]]
+            
+            
+            
         else:
             #unreachable
+            #wird nicht benötigt
             print("unreachable")
+     
+    return ips
 
 
 #Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
