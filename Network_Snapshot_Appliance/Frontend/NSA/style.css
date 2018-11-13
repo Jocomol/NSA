@@ -1,30 +1,24 @@
-.links{
+.info{
   float: left;
   padding: 0 200 0 0;
   border-right: 3px solid black;
   height: 500px;
+  width: 15%;
 }
 
-/*.vl {
-    border-left: 6px solid black;
-    height: 500px;
-
-}*/
-
-.TableIP{
-  float: left;
-}
-
-.TableDNS{
-  float: left;
-}
-.TableClient{
-  float: left;
-}
-.ButtonScan{
+.tabellen{
+  width: 84%;
   float: right;
 }
-.ButtonDownload{
+
+.tablerechts{
+  width: 50%;
+  float: left;
+  margin-top: 1em;
+}
+
+.tablelinks{
+  width: 50%;
   float: right;
 }
 
@@ -32,6 +26,14 @@ table {
   border-collapse:collapse;
 }
 
-td {
-  border: solid red;
+.table > tbody > tr > td{
+  border: solid black;
+  width: 100px;
+}
+
+.ButtonScan{
+  float: right;
+}
+.ButtonDownload{
+  float: right;
 }
