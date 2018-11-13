@@ -1,23 +1,9 @@
-10.0.201.100
-10.0.201.1
-5m00s
-255.255.255.0
-10.0.201.1
-10.0.201.1
-wlan.local
-
-10.0.201.100
-10.0.201.1
-5m00s
-255.255.255.0
-10.0.201.1
-10.0.201.1
-wlan.local
-
-10.0.201.100
-10.0.201.1
-5m00s
-255.255.255.0
-10.0.201.1
-10.0.201.1
-wlan.local
+| broadcast-dhcp-discover:
+|   IP Offered: 192.168.1.114
+|   DHCP Message Type: DHCPOFFER
+|   Server Identifier: 8.8.8.8
+|   IP Address Lease Time: 1 day, 0:00:00
+|   Subnet Mask: 255.255.255.0
+|   Router: 192.168.1.1
+|   Domain Name Server: 192.168.1.1
+|_  Domain Name: localdomain
