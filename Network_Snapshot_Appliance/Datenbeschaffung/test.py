@@ -4,6 +4,8 @@
 import subprocess, ipaddress
 from subprocess import Popen, PIPE
 
+#TODO test if it has somethign relevant, else delete
+
 def getIP():
     
     ##TODO, Adresse von Host erhalten z.B. 192.168.220.0/255.255.255.0

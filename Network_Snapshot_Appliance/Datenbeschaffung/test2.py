@@ -1,6 +1,7 @@
 #!/usr/bin/python3.5
 #Testfile2
 
+#TODO test if it has somethign relevant, else delete
 
 ##IP + netmask zu netID
 import subprocess, ipaddress

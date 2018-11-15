@@ -3,10 +3,9 @@
 import subprocess, dhcp_discovery, dns_discovery, ipaddress
 from subprocess import Popen, PIPE
 
+querryarray = ["",False,"",True] #Date, wanconnection, domainname, match
 
 def runScripts():
-    #TODO, run all scripts
-
     allIPs = ipDiscovery()
     dhcpData = dhcpDiscovery()
     dnsData = dnsDiscovery()
@@ -39,7 +38,7 @@ def createOutput(dhcp, dns, ips):
 
 
 def ipDiscovery():
-
+	#TODO make this work
     ip = getIP()
     data = pingHosts(ip)
 
@@ -47,7 +46,7 @@ def ipDiscovery():
 
 
 def dhcpDiscovery():
-    ##geht noch nicht
+    ##funktioniert
     #cmd = "['bash', 'bashscripts/dhcp_discovery.sh]"
     #data = execScpt(cmd)
 
@@ -67,10 +66,7 @@ def dnsDiscovery():
 
 
 def getIP():
-
-    ##TODO, Adresse von Host erhalten z.B. 192.168.220.0/255.255.255.0
-
-    output = subprocess.check_output(["ifconfig", "ens33"]).decode()
+    output = subprocess.check_output(["ifconfig", "ens33"]).decode() #TODO diese Zeile liest nur von der schnittstelle ens33 (von testcomputer) könnte eth0 sein
     print(output)
     array = output.split('\n')
     line = ""
@@ -84,7 +80,7 @@ def getIP():
                     print (line)
         if "netmask" in item:
             mask = item.split(" ")[12]
-            mask = str(sum([bin(int(x)).count("1") for x in mask.split(".")]))
+            mask = str(sum([bin(int(x)).count("1") for x in mask.split(".")])) #Diese Linie wandelt 255.255.255.0 in 24 um usw.
     combined = ip + "/" + mask
 
     return combined
@@ -93,8 +89,9 @@ def getIP():
 
 
 def pingHosts(ip):
+	#TODO make this work
     #Code von: https://topnetworkguide.com/how-to-use-python-to-ping-all-ip-addresses-on-a-network/
-    network = ipaddress.ip_network(ip)
+    network = ipaddress.ip_network(ip) #TODO Funktioniert nicht da man die Netzwerk addresse Bnötigt, mit zb dem modul netaddr könnte man dies umwandeln
     for i in network.hosts():
         i = str(i)
         toping = Popen(['ping','-c', '1', i], stdout=PIPE)
@@ -107,17 +104,17 @@ def pingHosts(ip):
             #TODO, 2D-Array
             #[["192.168.1.1", "client",None,None,None,None,None,None,None,None],["192.168.1.2", "client",None,None,None,None,None,None,None,None]]
 
-
-
-        else:
-            print("unreachable")
-                        #unreachable
-                        #wird nicht benötigt
-
     return ips
 
 
-#Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
+def getQuerryarray():
+		
+		#TODO Fill out the date index [0]
+		#TODO Fill the Domainname index [2]
+		querryarray[1] = checkWanconnection
+		return querryarray
+	
+#TODO Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
 def execScpt(cmd):
 
     result = subprocess.Popen(cmd, stdout=subprocess.PIPE)
@@ -125,7 +122,13 @@ def execScpt(cmd):
 
     return retVal
 
+	
+def checkWanconnection(ip):
+	#TODO make this work ping 8.8.8.8 or so
+	output = False
+	return output
 
+#Dummy Data for testing
 '''
 a = [["192.168.1.1","dhcp1",None,None,"2","192.681.22.3","255.0.0.0","192.168.1.1","hellow.local",None],
     ["192.168.1.2","dhcp2",None,None,"2","192.681.22.43","255.0.0.0","192.168.1.1","succ.local",None],
@@ -144,4 +147,3 @@ c = [["192.168.1.1", "dhcp1",None,None,None,None,None,None,None,None],
 print(createOutput(a,b,c)) #dhcp dns all
 '''
 
-print(ipDiscovery())
