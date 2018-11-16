@@ -5,6 +5,7 @@ import sqlite3
 #     ["192.168.1.3", "dns",None,None,None,None,None,None,None,True]]
 
 def DBInsert(queryarray,iptable):
+    '''
     ips = ["x"]
     isIn = False
     for k in range(len(iptable)):
@@ -16,6 +17,7 @@ def DBInsert(queryarray,iptable):
             iptable.pop(k)
         else:
             ips.append(iptable[k])
+            '''
     conn = sqlite3.connect('/var/www/html/NSA_DB.db')
     c = conn.cursor()
     c.execute('select COUNT (*) from query')
@@ -25,12 +27,8 @@ def DBInsert(queryarray,iptable):
         queryarray[1] = 1
     else:
         queryarray[1] = 0
-    if queryarray[3]:
-        queryarray[3] = 1
-    else:
-        queryarray[3] = 0
     queryarray.append(query_id)
-    c.execute('insert into query (date,wanconnection, domainname, match,id) VALUES (?,?,?,?,?)', queryarray)
+    c.execute('insert into query (date,wanconnection, domainname, subnetmask,id) VALUES (?,?,?,?,?)', queryarray)
     for row in iptable:
         iparray = row
 

@@ -9,7 +9,7 @@
   <body>
 
 <?php
-    $db = new PDO('sqlite:C:\xampp\htdocs\xampp\NSA\NSA_DB.db'); //Pfad muss noch angepasst werden wenn es auf einer Linux Syszem läuft
+    $db = new PDO('/var/www/html/NSA_DB.db'); //Pfad muss noch angepasst werden wenn es auf einer Linux Syszem läuft
 ?>
 
 
@@ -23,7 +23,7 @@
   echo $domain;
   ?></h4>
   <h4>Netmask: <?php
-  $netmask =$db->query("SELECT subnetmask FROM dhcp")->fetchColumn();
+  $netmask =$db->query("SELECT subnetmask FROM query")->fetchColumn();
   echo $netmask;
   ?></h4>
 </div>

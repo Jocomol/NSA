@@ -6,16 +6,14 @@ def run():
     OneDHCP=[]
     parsedDHCP=[]
     for i in range(0, 10):
-        #output = subprocess.check_output(["nmap", "--script=broadcast-dhcp-discover"])
-        output = subprocess.check_output(["cat", "output.txt"])
-        for c in range(0, 9):
-            if c != 2 and c != 0:
+        output = subprocess.check_output(["nmap", "--script=broadcast-dhcp-discover"])
+        for c in range(0, 14):
+            if c != 0 and c != 1 and c != 2 and c!=3  and c!= 4 and c!=6 and c!= 13 and c!=14:
                 helpme = (str(output).split("\\n")[c].split(":")[1].strip())
                 OneDHCP.append(helpme)
-
         parsedDHCP.append(OneDHCP[1])                   #0
         try:
-            domainname = subprocess.check_output(["nslookup", OneDHCP[1]]) #1
+            domainname = subprocess.check_output(['nslookup', OneDHCP[1]]) #1
             domainname = str(domainname).split(".\\n")[0].split("=")[1]
         except Exception:
             parsedDHCP.append(None)
@@ -31,5 +29,15 @@ def run():
         parsedDHCP.append(None)                         #9
 
         dhcpList.append(parsedDHCP)
+        OneDHCP=[]
+        parsedDHCP=[]
+    returnarray = []
+    inreturn = ["dummy"]
 
-    return dhcpList
+    for j in range(len(dhcpList)):
+        if dhcpList[j][0] in str(inreturn):
+            x = 0
+        else:
+            returnarray.append(dhcpList[j])
+            inreturn.append(dhcpList[j][0])
+    return returnarray

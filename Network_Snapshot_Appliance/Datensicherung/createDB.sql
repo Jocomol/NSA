@@ -22,7 +22,7 @@ id INTEGER PRIMARY KEY NOT NULL,
 date TEXT NOT NULL,
 wanconnection INTEGER NOT NULL,
 domainname TEXT NOT NULL,
-match INTEGER
+subnetmask TEXT NOT NULL
 );
 
 CREATE TABLE ip(

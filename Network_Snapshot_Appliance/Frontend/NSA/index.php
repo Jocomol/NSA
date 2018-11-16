@@ -12,7 +12,7 @@
 
    <head>
       <title>Tutorialspoint.com</title>
-      <link href = "css/bootstrap.min.css" rel = "stylesheet">
+      <link href = "style.css" rel = "stylesheet">
 
       <style>
          body {

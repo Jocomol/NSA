@@ -7,7 +7,7 @@ import socket
 def run():
     returnlist=[]
     dnsList=[]
-    for i in range(0, 1):
+    for i in range(0, 10):
         output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
         line = str(output).split('|')[4].split("=")[1].split(" ")[0]
         dnsList.append(line)
@@ -38,4 +38,12 @@ def run():
         saali3 = subprocess.run(['nslookup', '20min.ch'])
         if (int(str(saali2).split("=")[2].split(")")[0]) + int(str(saali).split("=")[2].split(")")[0]) + int(str(saali3).split("=")[2].split(")")[0]) <= 1):
             returnlist[i][9] = True
-    return returnlist
+    returnarray = []
+    inreturn = ["dummy"]
+    for j in range(len(returnlist)):
+        if returnlist[j][0] in str(inreturn):
+            x = 0
+        else:
+            returnarray.append(returnlist[j])
+            inreturn.append(returnlist[j][0])
+    return returnarray

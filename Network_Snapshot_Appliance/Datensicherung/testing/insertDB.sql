@@ -1,7 +1,7 @@
 /* Insert Query*/
-INSERT INTO query (date, wanconnection, domainname, match)
+INSERT INTO query (date, wanconnection, domainname, subnetmask)
 VALUES
-("30.10.2018",1,"domain.local",1);
+("30.10.2018",1,"domain.local","255.255.255.0");
 
 /*Insert all ips*/
 INSERT INTO ip (ip, hostname, devicetype, deviceos, dhcp_id, dns_id, query_id)
