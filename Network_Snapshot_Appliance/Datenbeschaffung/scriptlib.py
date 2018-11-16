@@ -137,22 +137,15 @@ def pingHosts(ip):
             else:
                 print ("An Error happened")
                 exit()
+        #TODO OS Detection
     return allIp
 
 def getqueryarray():
 		#TODO Fill the Domainname index [2]
-        queryarray[2] = "wlan.lcal"
+        queryarray[2] = "dummydomain.local"
         queryarray[0] = str(datetime.datetime.now())
         queryarray[1] = checkWanconnection()
         return queryarray
-
-#TODO Needs cmd like cmd = "['bash', 'bashscripts/test.sh]"
-def execScpt(cmd):
-
-    result = subprocess.Popen(cmd, stdout=subprocess.PIPE)
-    retVal = result.stdout.decode('utf-8')
-
-    return retVal
 
 
 def checkWanconnection():
@@ -160,22 +153,3 @@ def checkWanconnection():
     output = toping.communicate()[0]
     wanconnection = toping.returncode
     return wanconnection == 0
-
-#Dummy Data for testing
-'''
-a = [["192.168.1.1","dhcp1",None,None,"2","192.681.22.3","255.0.0.0","192.168.1.1","hellow.local",None],
-    ["192.168.1.2","dhcp2",None,None,"2","192.681.22.43","255.0.0.0","192.168.1.1","succ.local",None],
-    ["192.168.1.3","dhcp3",None,None,"2","192.681.22.53","255.0.0.0","192.168.1.1","kraftwerk.local",None]]
-
-b = [["192.168.1.1", "dhcp1",None,None,None,None,None,None,None,True],
-     ["192.168.1.5", "dns",None,None,None,None,None,None,None,True]]
-
-c = [["192.168.1.1", "dhcp1",None,None,None,None,None,None,None,None],
-    ["192.168.1.2", "dhcp2",None,None,None,None,None,None,None,None],
-    ["192.168.1.3", "dhcp3",None,None,None,None,None,None,None,None],
-    ["192.168.1.5", "dns",None,None,None,None,None,None,None,None],
-    ["192.168.1.7", "client1",None,None,None,None,None,None,None,None],
-    ["192.168.1.6", "client2",None,None,None,None,None,None,None,None]]
-
-print(createOutput(a,b,c)) #dhcp dns all
-'''

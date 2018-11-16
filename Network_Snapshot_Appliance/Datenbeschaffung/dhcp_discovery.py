@@ -8,8 +8,11 @@ def run():
     for i in range(0, 10):
         output = subprocess.check_output(["nmap", "--script=broadcast-dhcp-discover"])
         for c in range(0, 14):
-            if c != 0 and c != 1 and c != 2 and c!=3  and c!= 4 and c!=6 and c!= 13 and c!=14:
+            if c != 0 and c != 1 and c != 2 and c!=3  and c!= 4 and c!=6 and c!= 13 and c!=14 and len(str(output).split("\\n")) >= 10:
                 helpme = (str(output).split("\\n")[c].split(":")[1].strip())
+                OneDHCP.append(helpme)
+            elif len(str(output).split("\\n")) <= 10:
+                helpme = None
                 OneDHCP.append(helpme)
         parsedDHCP.append(OneDHCP[1])                   #0
         try:
@@ -35,9 +38,14 @@ def run():
     inreturn = ["dummy"]
 
     for j in range(len(dhcpList)):
-        if dhcpList[j][0] in str(inreturn):
+        if dhcpList[j][0] == None:
+            x = 0
+        elif dhcpList[j][0] in str(inreturn):
             x = 0
         else:
+            print (dhcpList[j])
             returnarray.append(dhcpList[j])
             inreturn.append(dhcpList[j][0])
     return returnarray
+
+run()

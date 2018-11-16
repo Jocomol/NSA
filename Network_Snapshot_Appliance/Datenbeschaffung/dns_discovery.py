@@ -10,6 +10,9 @@ def run():
     for i in range(0, 10):
         output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
         line = str(output).split('|')[4].split("=")[1].split(" ")[0]
+        if line[-1:] == "n":
+            line = line.strip("n")
+            line = line.strip("\\")
         dnsList.append(line)
 
     dnsList = dict.fromkeys(dnsList).keys()
@@ -20,6 +23,7 @@ def run():
     returnlist.append(["8.8.8.8", domainname1,None,None,None,None,None,None,None,None])
     returnlist.append(["8.8.4.4", domainname2,None,None,None,None,None,None,None,None])
     for dns in dnsList:
+        print (dns)
         index = 2
         returnlist.append([dns,None,None,None,None,None,None,None,None,None])
         try:
