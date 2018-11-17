@@ -47,6 +47,13 @@ FOREIGN KEY (ip_id) REFERENCES ip(id),
 FOREIGN KEY (role_id) REFERENCES role(id)
 );
 
+CREATE TABLE configuration(
+id INTEGER PRIMARY KEY NOT NULL,
+interface TEXT NOT NULL,
+dnsrepetation INTEGER NOT NULL,
+dhcprepetation INTEGER NOT NULL
+);
+
 INSERT INTO role (id, role)
 VALUES
 (1,"DNS"),

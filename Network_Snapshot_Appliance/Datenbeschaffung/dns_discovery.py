@@ -4,10 +4,10 @@ import re
 import os
 from subprocess import Popen, PIPE
 import socket
-def run():
+def run(repe):
     returnlist=[]
     dnsList=[]
-    for i in range(0, 10):
+    for i in range(0, repe):
         output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
         line = str(output).split('|')[4].split("=")[1].split(" ")[0]
         if line[-1:] == "n":

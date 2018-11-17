@@ -4,8 +4,8 @@
 import scriptlib, DBConnector
 
 def run():
-    run = scriptlib.runScripts()
+    configuration = DBConnector.getConfiguration()
+    run = scriptlib.runScripts(configuration)
     queryarray = scriptlib.getqueryarray()
     DBConnector.DBInsert(queryarray, run)
-    print("done")
 run()

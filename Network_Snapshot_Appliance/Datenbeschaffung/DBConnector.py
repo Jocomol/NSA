@@ -68,6 +68,13 @@ def DBInsert(queryarray,iptable):
     conn.commit()
     conn.close()
 
+def getConfiguration():
+    output = []
+    conn = sqlite3.connect('/var/www/html/NSA_DB.db')
+    c = conn.cursor()
+    c.execute('select * from configuration')
+    output = c.fetchone()
+    return output
 
 ##USAGE
 #DBInsert(b,a)

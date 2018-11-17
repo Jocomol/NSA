@@ -1,11 +1,11 @@
 #!/usr/bin/python3.5
 import subprocess
 import re
-def run():
+def run(repe):
     dhcpList=[]
     OneDHCP=[]
     parsedDHCP=[]
-    for i in range(0, 10):
+    for i in range(0, repe):
         output = subprocess.check_output(["nmap", "--script=broadcast-dhcp-discover"])
         for c in range(0, 14):
             if c != 0 and c != 1 and c != 2 and c!=3  and c!= 4 and c!=6 and c!= 13 and c!=14 and len(str(output).split("\\n")) >= 10:
@@ -43,9 +43,6 @@ def run():
         elif dhcpList[j][0] in str(inreturn):
             x = 0
         else:
-            print (dhcpList[j])
             returnarray.append(dhcpList[j])
             inreturn.append(dhcpList[j][0])
     return returnarray
-
-run()

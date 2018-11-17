@@ -8,10 +8,10 @@ from netaddr import IPNetwork
 queryarray = ["",False,"",""] #Date, wanconnection, domainname, subnetmask
 queryarray
 
-def runScripts():
-    dhcpData = dhcpDiscovery()
-    dnsData = dnsDiscovery()
-    ips = ipDiscovery()
+def runScripts(conf):
+    dhcpData = dhcpDiscovery(conf[3])
+    dnsData = dnsDiscovery(conf[2])
+    ips = ipDiscovery(conf[1])
     output = createOutput(dhcpData, dnsData, ips)
 
     return output
@@ -43,36 +43,36 @@ def createOutput(dhcp, dns, ips):
 
 
 
-def ipDiscovery():
+def ipDiscovery(repe):
 
-    ip = getIP()
+    ip = getIP(repe)
     data = pingHosts(ip)
 
     return data
 
 
-def dhcpDiscovery():
+def dhcpDiscovery(conf):
     ##funktioniert
     #cmd = "['bash', 'bashscripts/dhcp_discovery.sh]"
     #data = execScpt(cmd)
 
-    data = dhcp_discovery.run()
+    data = dhcp_discovery.run(conf)
 
     return data
 
 
-def dnsDiscovery():
+def dnsDiscovery(conf):
     ##funktioniert
     #cmd = "['bash', 'bashscripts/dns_discovery.sh]"
     #data = execScpt(cmd)
 
-    data = dns_discovery.run()
+    data = dns_discovery.run(conf)
 
     return data
 
 
-def getIP():
-    output = subprocess.check_output(["ifconfig", "ens33"]).decode() #TODO diese Zeile liest nur von der schnittstelle ens33 (von testcomputer) könnte eth0 sein
+def getIP(repe):
+    output = subprocess.check_output(["ifconfig", repe]).decode() #TODO diese Zeile liest nur von der schnittstelle ens33 (von testcomputer) könnte eth0 sein
     print(output)
     array = output.split('\n')
     line = ""
