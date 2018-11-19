@@ -9,7 +9,7 @@
   <body>
 
 <?php
-    $db = new PDO('sqlite:/var/www/html/NSA_DB.db'); //Pfad muss noch angepasst werden wenn es auf einer Linux Syszem läuft
+    $db = new PDO('sqlite:/etc/NSA/data/NSA_DB.db'); //Pfad muss noch angepasst werden wenn es auf einer Linux Syszem läuft
 ?>
 
 

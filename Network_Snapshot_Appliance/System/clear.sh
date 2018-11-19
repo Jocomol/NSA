@@ -1,0 +1,1 @@
+rm -R /etc/NSA/

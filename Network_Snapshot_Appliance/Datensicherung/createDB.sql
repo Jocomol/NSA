@@ -51,7 +51,8 @@ CREATE TABLE configuration(
 id INTEGER PRIMARY KEY NOT NULL,
 interface TEXT NOT NULL,
 dnsrepetation INTEGER NOT NULL,
-dhcprepetation INTEGER NOT NULL
+dhcprepetation INTEGER NOT NULL,
+cronjob INTEGER NOT NULL
 );
 
 INSERT INTO role (id, role)

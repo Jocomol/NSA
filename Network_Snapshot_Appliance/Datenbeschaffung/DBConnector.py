@@ -5,7 +5,7 @@ import sqlite3
 #     ["192.168.1.3", "dns",None,None,None,None,None,None,None,True]]
 
 def DBInsert(queryarray,iptable):
-    conn = sqlite3.connect('/var/www/html/NSA_DB.db')
+    conn = sqlite3.connect('/etc/NSA/data/NSA_DB.db')
     c = conn.cursor()
     c.execute('select COUNT (*) from query')
     query_id_list = c.fetchone()
@@ -70,7 +70,7 @@ def DBInsert(queryarray,iptable):
 
 def getConfiguration():
     output = []
-    conn = sqlite3.connect('/var/www/html/NSA_DB.db')
+    conn = sqlite3.connect('/etc/NSA/data/NSA_DB.db')
     c = conn.cursor()
     c.execute('select * from configuration')
     output = c.fetchone()
