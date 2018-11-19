@@ -72,7 +72,7 @@ def dnsDiscovery(conf):
 
 
 def getIP(repe):
-    output = subprocess.check_output(["ifconfig", repe]).decode() #TODO diese Zeile liest nur von der schnittstelle ens33 (von testcomputer) könnte eth0 sein
+    output = subprocess.check_output(["ifconfig", repe]).decode()
     print(output)
     array = output.split('\n')
     line = ""
@@ -137,7 +137,6 @@ def pingHosts(ip):
             else:
                 print ("An Error happened")
                 exit()
-        #TODO OS Detection
     return allIp
 
 def getqueryarray():
