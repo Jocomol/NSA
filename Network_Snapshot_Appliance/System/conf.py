@@ -3,10 +3,10 @@ import sqlite3
 def run():
     conn = sqlite3.connect('/etc/NSA/data/NSA_DB.db')
     c = conn.cursor()
-    c.execute('select COUNT (*) from query')
-    count = c.fetchone()
-    print (count)
-    if count[0] != 0:
+    c.execute('select COUNT (*) from configuration')
+    count = c.fetchall()
+    currconf = ["","","","",""]
+    if int(str(count[0]).split(",")[0].strip("(")) != 0:
         c.execute('select * from configuration')
         currconf = (c.fetchone())
         print ("Current configuration:")
@@ -21,9 +21,8 @@ def run():
     dhcprepetation = input("Please enter how many times the DHCP-Discovery Script should be repeated: ")
     cronjob = input("Please enter how often the scriptlib should be executed (cronjob) in minutes: ")
     configuration = [1,interface,dnsrepetation,dhcprepetation,cronjob]
-
     for i in range(len(configuration)):
-        if configuration[i] == "":
+        if not configuration[i]:
             configuration[i] = currconf[i]
 
     c.execute("delete from configuration where id = 1")
@@ -31,25 +30,16 @@ def run():
     conn.commit()
     conn.close()
 
+    if configuration[4] != currconf[4]:
+        if int(configuration[4]) >= 60:
+            hour = int(float(configuration[4]) / 60)
+            min = int(configuration[4]) - hour * 60
+        else:
+            min = int(configuration[4])
+            hour = "*"
+        cronjobstring = min, hour,"   * * *   root    python3 /etc/NSA/script/controller.py"
+    #TODO if exists Delete the old entry
+    #TODO Add the new entry
+    #/etc/crontab: system-wide crontab
 
-
-'''
-# /etc/crontab: system-wide crontab
-# Unlike any other crontab you don't have to run the `crontab'
-# command to install the new version when you edit this file
-# and files in /etc/cron.d. These files also have username fields,
-# that none of the other crontabs do.
-
-SHELL=/bin/sh
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-
-# m h dom mon dow user  command
-17 *    * * *   root    cd / && run-parts --report /etc/cron.hourly
-25 6    * * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
-47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
-52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
-#
-
-    #setup cronjob
-'''
 run()
