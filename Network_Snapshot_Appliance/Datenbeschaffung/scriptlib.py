@@ -163,7 +163,7 @@ def getDomainname():
     
     output = subprocess.check_output(["nslookup", DNSIP]).decode()
     
-    #TODO, Output parsen
+    #Output parsen
     
     #Feld mit Hostname auslesen
     fqdn = output.split(":")[1]
