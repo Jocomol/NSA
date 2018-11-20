@@ -7,13 +7,13 @@ then
 fi
 
 apt update
-apt install python3 sqlite3 php7.2 python3-pip php7.2-sqlite3 apache2 -y
+apt install python3 sqlite3 php7.0 python3-pip php7.0-sqlite3 apache2 -y
 pip install pip
 pip install netaddr
 a2dismod mpm_event
 a2dismod mpm_worker
 a2enmod mpm_prefork
-a2enmod php7.2
+a2enmod php7.0
 rm -R /etc/NSA/
 mkdir /etc/NSA
 mkdir /etc/NSA/data
