@@ -67,7 +67,8 @@ def dnsDiscovery(conf):
     #data = execScpt(cmd)
 
     data = dns_discovery.run(conf)
-
+    global DNSIP
+    DNSIP = data[1][1]
     return data
 
 
@@ -141,6 +142,11 @@ def pingHosts(ip):
 
 def getqueryarray():
 		#TODO Fill the Domainname index [2]
+        domainname = getDomainname()
+        if len(domainname) > 0:
+            queryarray[2] = domainname
+        else:
+            queryarray[2] = "dummydomain.local"
         queryarray[2] = "dummydomain.local"
         queryarray[0] = str(datetime.datetime.now())
         queryarray[1] = checkWanconnection()
@@ -152,3 +158,23 @@ def checkWanconnection():
     output = toping.communicate()[0]
     wanconnection = toping.returncode
     return wanconnection == 0
+
+def getDomainname():
+    
+    output = subprocess.check_output(["nslookup", DNSIP]).decode()
+    
+    #TODO, Output parsen
+    
+    #Feld mit Hostname auslesen
+    fqdn = output.split(":")[1]
+    #Hostteil abtrennen
+    fqdn = fqdn.split(".")
+    domainname = fqdn.pop(0)
+    print(domainname)
+    return domainname
+
+
+global DNSIP
+DNSIP = "10.9.4.12"
+getDomainname()
+
