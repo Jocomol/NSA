@@ -173,8 +173,3 @@ def getDomainname():
     print(domainname)
     return domainname
 
-
-global DNSIP
-DNSIP = "10.9.4.12"
-getDomainname()
-
