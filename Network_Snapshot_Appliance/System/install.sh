@@ -7,7 +7,7 @@ then
 fi
 
 apt update
-apt install python3 sqlite3 php7.2 python3-pip php7.2-sqlite3 -y
+apt install python3 sqlite3 php7.2 python3-pip php7.2-sqlite3 apache2 -y
 pip install pip
 pip install netaddr
 a2dismod mpm_event
