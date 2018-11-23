@@ -1,10 +1,7 @@
 #!/usr/bin/python3.5
 #Scriptlibrary
-import subprocess, dhcp_discovery, dns_discovery, ipaddress
+import subprocess, dhcp_discovery, dns_discovery, ipaddress, datetime, netaddr
 from subprocess import Popen, PIPE
-import datetime
-from netaddr import IPNetwork
-
 queryarray = ["",False,"",""] #Date, wanconnection, domainname, subnetmask
 queryarray
 
@@ -38,37 +35,25 @@ def createOutput(dhcp, dns, ips):
         ips.append(dns[k-1])
     for g in range (len(dhcp)):
         ips.append(dhcp[g-1])
+
     return ips
 
-
-
-
 def ipDiscovery(repe):
-
     ip = getIP(repe)
     data = pingHosts(ip)
 
     return data
 
-
 def dhcpDiscovery(conf):
-    ##funktioniert
-    #cmd = "['bash', 'bashscripts/dhcp_discovery.sh]"
-    #data = execScpt(cmd)
-
     data = dhcp_discovery.run(conf)
 
     return data
 
-
 def dnsDiscovery(conf):
-    ##funktioniert
-    #cmd = "['bash', 'bashscripts/dns_discovery.sh]"
-    #data = execScpt(cmd)
-
     data = dns_discovery.run(conf)
     global DNSIP
     DNSIP = data[1][1]
+
     return data
 
 
@@ -160,11 +145,11 @@ def checkWanconnection():
     return wanconnection == 0
 
 def getDomainname():
-    
+    #TODO
     output = subprocess.check_output(["nslookup", DNSIP]).decode()
-    
+
     #Output parsen
-    
+
     #Feld mit Hostname auslesen
     fqdn = output.split(":")[1]
     #Hostteil abtrennen
@@ -172,4 +157,3 @@ def getDomainname():
     domainname = fqdn.pop(0)
     print(domainname)
     return domainname
-
