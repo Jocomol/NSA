@@ -7,11 +7,12 @@ then
 fi
 
 apt update
+apt install nmap -y
 apt install apache2 -y
 apt install python3 -y
 apt install sqlite3 -y
 apt install php7.2 -y
-apt install python3-pip -y #Not in Repositry / Find right repository
+apt install python3-pip -y #TODO Not in Repositry / Find right repository
 apt install php7.2-sqlite3 -y
 apt install libapache2-mod-php7.2 -y
 apt install libapache2-mod-php -y

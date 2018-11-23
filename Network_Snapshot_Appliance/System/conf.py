@@ -34,12 +34,27 @@ def run():
         if int(configuration[4]) >= 60:
             hour = int(float(configuration[4]) / 60)
             min = int(configuration[4]) - hour * 60
+            if min == 0:
+                min = "*"
+            hour = '*/' + str(hour)
         else:
             min = int(configuration[4])
             hour = "*"
-        cronjobstring = min, hour,"   * * *   root    python3 /etc/NSA/script/controller.py"
-    #TODO if exists Delete the old entry
-    #TODO Add the new entry
-    #/etc/crontab: system-wide crontab
+        min = '*/' + str(min)
+        cronjobstring = min + " " + hour +  ' * * *   root    python3 /etc/NSA/script/controller.py'
+        f = open("/etc/crontab","r")
+        lines = f.readlines()
+        f.close()
+        New = True
+        f = open("/etc/crontab",'w')
+        for line in lines:
+            if "NSA" not in line:
+                f.write(line)
+            else:
+                New = False
+                f.write(cronjobstring)
+        if New:
+            f.write(cronjobstring)
+        f.write("\n")
 
 run()
