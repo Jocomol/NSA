@@ -127,8 +127,8 @@ def pingHosts(ip):
 
 def getqueryarray():
 		#TODO Fill the Domainname index [2]
-        domainname = getDomainname()
-        if len(domainname) > 0:
+        #domainname = getDomainname()
+        if False:   #len(domainname) > 0:
             queryarray[2] = domainname
         else:
             queryarray[2] = "dummydomain.local"
@@ -157,6 +157,3 @@ def getDomainname():
     domainname = fqdn.pop(0)
     print(domainname)
     return domainname
-
-
-print(getqueryarray())
