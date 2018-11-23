@@ -8,7 +8,7 @@
 - Email: sven.trachsel@iet-gibb.ch
 
 ##Info
-
+The Networkscanning is scanning the while Network.
 ##Scripts
 ###controller.py
 controller.py is the Controller for the whole Script Library. It executes the scriptlib.py and gives the Output to the DBConnector.py Script.
