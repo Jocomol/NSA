@@ -11,8 +11,7 @@
 <html lang = "en">
 
    <head>
-      <title>Tutorialspoint.com</title>
-      <link href = "style.css" rel = "stylesheet">
+      <link href = "css/bootstrap.min.css" rel = "stylesheet">
 
       <style>
          body {

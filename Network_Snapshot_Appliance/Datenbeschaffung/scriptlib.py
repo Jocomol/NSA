@@ -157,3 +157,6 @@ def getDomainname():
     domainname = fqdn.pop(0)
     print(domainname)
     return domainname
+
+
+print(getqueryarray())

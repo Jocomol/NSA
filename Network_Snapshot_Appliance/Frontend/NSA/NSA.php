@@ -9,7 +9,7 @@
   <body>
 
 <?php
-    $db = new PDO('sqlite:/etc/NSA/data/NSA_DB.db'); //Pfad muss noch angepasst werden wenn es auf einer Linux Syszem läuft
+    $db = new PDO('sqlite:C:\xampp\htdocs\xampp\NSA\NSA_DB.db'); //Pfad muss noch angepasst werden wenn es auf einer Linux Syszem läuft
 ?>
 
 
@@ -23,14 +23,20 @@
   echo $domain;
   ?></h4>
   <h4>Netmask: <?php
-  $netmask =$db->query("SELECT subnetmask FROM query")->fetchColumn();
+  $netmask =$db->query("SELECT subnetmask FROM dhcp")->fetchColumn();
   echo $netmask;
   ?></h4>
 </div>
 <div class="tabellen">
 <div class="tablerechts">
+ <form action="" method="post">
+ Query: <input type="text" name="query" /><br />
+ <input type="Submit" value="Absenden" />
+ </form>
+
 <?php
-        $sql = "SELECT * FROM ip";
+$query = $_POST['query'] ?? 'john doe';;
+        $sql = "SELECT * FROM ip WHERE query_id LIKE '$query'";
       echo '
 <table class="table table-bordered table-striped">
         <tr>
@@ -67,17 +73,14 @@
         <tr>
             <td>DHCP</td>
             <td>IP</td>
-            <td>ON / OFF</td>
         </tr>
     </table>';
         foreach ($db->query($sql) as $row)
         {
-
         echo '<table class="table table-bordered table-striped">
                 <tr>
                     <td>'.$row['id'].'</td>
                     <td>'.$row['ip_offered'].'</td>
-                    <td>'.$row['router'].'</td>
                 </tr>
             </table>';
         }
@@ -86,7 +89,7 @@
 <br>
 <div id="tablelinks">
 <?php
-        $sql = "SELECT * FROM dns";
+        $sql = "SELECT dns.id, dns.working, ip.dns_id, ip.ip   FROM dns INNER JOIN ip ON dns.id = ip.dns_id";
       echo '
 <table class="table table-bordered table-striped">
         <tr>
@@ -97,12 +100,22 @@
     </table>';
         foreach ($db->query($sql) as $row)
         {
+          $working = $row['working'];
+          if ($working = "0")
+          $status = "OFF";
+          else
+          $status = "ON";
+          if($working ="1")
+          $farbe = "green";
+          else
+          $farbe ="red";
+
 
         echo '<table class="table table-bordered table-striped">
                 <tr>
                     <td>'.$row['id'].'</td>
-                    <td>'.$row['working'].'</td>
-                    <td>'.$row['working'].'</td>
+                    <td>'.$row['ip'].'</td>
+                    <td style = background-color:'.$farbe.' >'.$status.'</td>
                 </tr>
             </table>';
         }
