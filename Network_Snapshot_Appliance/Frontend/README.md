@@ -5,8 +5,13 @@
 - Laxushan Yogalingam
 - Contact at: laxushan.yogalingam@iet-gibb.ch
 
-## Changelog
-### Version 0.5
-- Started Website
+## Info
+This is the Frontend of the Whole Appliance
 
-
+## Files
+### index.php
+The Login Screen of the Website
+### style.css
+The Stylesheet of the Website
+### NSA.php
+The Website

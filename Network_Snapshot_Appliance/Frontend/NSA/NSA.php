@@ -89,6 +89,7 @@ $query = $_POST['query'] ?? 'john doe';;
 <br>
 <div id="tablelinks">
 <?php
+
         $sql = "SELECT dns.id, dns.working, ip.dns_id, ip.ip   FROM dns INNER JOIN ip ON dns.id = ip.dns_id";
       echo '
 <table class="table table-bordered table-striped">
