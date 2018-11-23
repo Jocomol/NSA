@@ -4,7 +4,8 @@ def run(repe):
     returnlist=[]
     dnsList=[]
     for i in range(repe):
-        output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
+        #output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
+        output = subprocess.check_output(["echo", " "])
         try:
             line = str(output).split('|')[4].split("=")[1].split(" ")[0]
             if line[-1:] == "n":
@@ -39,10 +40,14 @@ def run(repe):
             returnlist[i][9] = True
     returnarray = []
     inreturn = ["dummy"]
+    print (returnarray)
+    print(returnlist)
     for j in range(len(returnlist)):
-        if len(returnarray[j]) >= 1 and returnarray[j][0] != None and returnlist[j][0] in str(inreturn):
+        if returnlist[j][0] in str(inreturn):
             x = 0
         else:
             returnarray.append(returnlist[j])
             inreturn.append(returnlist[j][0])
     return returnarray
+
+print (run(3))
