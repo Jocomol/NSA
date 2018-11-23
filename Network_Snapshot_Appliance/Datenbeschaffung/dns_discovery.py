@@ -4,15 +4,14 @@ def run(repe):
     returnlist=[]
     dnsList=[]
     for i in range(repe):
-        #output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
-        output = subprocess.check_output(["echo", " "])
+        output = subprocess.check_output(["nmap", "--script=broadcast-dns-service-discovery"])
         try:
             line = str(output).split('|')[4].split("=")[1].split(" ")[0]
             if line[-1:] == "n":
                 line = line.strip("n")
                 line = line.strip("\\")
         except IndexError:
-            line = None
+            line = "None"
         dnsList.append(line)
     dnsList = dict.fromkeys(dnsList).keys()
     domainname1 = subprocess.check_output(["nslookup", "8.8.8.8"])
@@ -40,8 +39,6 @@ def run(repe):
             returnlist[i][9] = True
     returnarray = []
     inreturn = ["dummy"]
-    print (returnarray)
-    print(returnlist)
     for j in range(len(returnlist)):
         if returnlist[j][0] in str(inreturn):
             x = 0
@@ -49,5 +46,3 @@ def run(repe):
             returnarray.append(returnlist[j])
             inreturn.append(returnlist[j][0])
     return returnarray
-
-print (run(3))
