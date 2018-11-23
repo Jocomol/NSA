@@ -40,7 +40,7 @@ def run(repe):
     returnarray = []
     inreturn = ["dummy"]
     for j in range(len(returnlist)):
-        if returnarray[j][0] != None and returnlist[j][0] in str(inreturn):
+        if len(returnarray[j]) >= 1 and returnarray[j][0] != None and returnlist[j][0] in str(inreturn):
             x = 0
         else:
             returnarray.append(returnlist[j])
