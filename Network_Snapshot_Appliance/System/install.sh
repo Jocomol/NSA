@@ -12,7 +12,7 @@ apt install apache2 -y
 apt install python3 -y
 apt install sqlite3 -y
 apt install php7.2 -y
-apt install python3-pip -y #TODO Not in Repositry / Find right repository
+apt install python3-pip -y 
 apt install php7.2-sqlite3 -y
 apt install libapache2-mod-php7.2 -y
 apt install libapache2-mod-php -y
@@ -30,12 +30,12 @@ mkdir /etc/NSA/data
 mkdir /etc/NSA/script
 mkdir /etc/NSA/frontend
 cp ./conf.py /etc/NSA/script
-cp ../Datenbeschaffung/* /etc/NSA/script
+cp ../Networkscanning/* /etc/NSA/script
 cp ../Frontend/NSA/* /var/www/html
 ln -s /var/www/html /etc/NSA/frontend
 chmod +x nsaconf.sh
 cp ./nsaconf.sh /usr/bin/nsaconf
-cp ../Datensicherung/createDB.sql /etc/NSA/data
+cp ../Data/createDB.sql /etc/NSA/data
 touch /etc/NSA/data/NSA_DB.db
 sqlite3 /etc/NSA/data/NSA_DB.db < /etc/NSA/data/createDB.sql
 rm /etc/NSA/data/createDB.sql
