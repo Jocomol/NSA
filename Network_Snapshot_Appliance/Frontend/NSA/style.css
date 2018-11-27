@@ -1,4 +1,6 @@
-
+body{
+  word-break: break-all;
+}
 
 .info{
   float: left;
@@ -21,7 +23,7 @@
 
 .tablelinks{
   width: 50%;
-  float: right;
+  float: left;
 }
 
 table {
@@ -31,11 +33,4 @@ table {
 .table > tbody > tr > td{
   border: solid black;
   width: 100px;
-}
-
-.ButtonScan{
-  float: right;
-}
-.ButtonDownload{
-  float: right;
 }
