@@ -56,8 +56,8 @@ def run():
             min = int(configuration[4])
             hour = "*"
         min = '*/' + str(min)
-        cronjobstring = min + " " + hour + """ * * *   root    python3
-            /etc/NSA/script/controller.py"""
+        cronjobstring = str(min + " " + hour + " * * *   root    python3 " +
+                            "/etc/NSA/script/controller.py")
         f = open("/etc/crontab", "r")
         lines = f.readlines()
         f.close()
