@@ -1,7 +1,8 @@
 import sqlite3
 
-#Insert into the Database
-def DBInsert(queryarray,iptable):
+
+# Insert into the Database
+def DBInsert(queryarray, iptable):
     conn = sqlite3.connect('/etc/NSA/data/NSA_DB.db')
     c = conn.cursor()
     c.execute('select COUNT (*) from query')
@@ -13,8 +14,17 @@ def DBInsert(queryarray,iptable):
         queryarray[1] = 0
     queryarray.append(query_id)
 
-    #Insert the Query
-    c.execute('insert into query (date,wanconnection, domainname, subnetmask,id) VALUES (?,?,?,?,?)', queryarray)
+    # Insert the Query
+    c.execute("""insert into query
+        (
+            date,
+            wanconnection,
+            domainname,
+            subnetmask,
+            id
+        )
+        VALUES (?, ?, ?, ?, ?)""", queryarray)
+
     for row in iptable:
         iparray = row
 
@@ -29,20 +39,45 @@ def DBInsert(queryarray,iptable):
         dns = False
         dhcp = False
 
-        #Insert all the DNS
+        # Insert all the DNS
         if row[9] is not None:
             dns = True
             if row[9]:
-                c.execute("insert into dns (id,working) VALUES (?,?)",(dns_id,1))
+                c.execute("""insert into dns
+                (
+                    id,
+                    working
+                )
+                VALUES (?,?)""", (dns_id, 1))
             else:
-                c.execute("insert into dns (id,working) VALUES (?,?)",(dns_id,0))
+                c.execute("""insert into dns
+                        (
+                            id,
+                            working
+                        )
+                        VALUES (?,?)""", (dns_id, 0))
 
-        #Insert all the DHCP
+        # Insert all the DHCP
         if row[5] is not None:
             dhcp = True
-            c.execute("insert into dhcp (id,leastime,ip_offered,subnetmask,router,domainname) VALUES (?,?,?,?,?,?)",(dhcp_id,row[4],row[5],row[6],row[7],row[8]))
+            c.execute("""insert into dhcp
+                    (
+                        id,
+                        leastime,
+                        ip_offered,
+                        subnetmask,
+                        router,
+                        domainname
+                    )
+                    VALUES (?,?,?,?,?,?)""", (
+                            dhcp_id,
+                            row[4],
+                            row[5],
+                            row[6],
+                            row[7],
+                            row[8]))
 
-        #Insert all the IP's
+        # Insert all the IP's
         c.execute('select COUNT (*) from ip')
         ip_id_list = c.fetchone()
         ip_id = ip_id_list[0] + 1
@@ -62,16 +97,39 @@ def DBInsert(queryarray,iptable):
             rowrow[6] = None
         rowrow[7] = query_id
 
-        c.execute("insert into ip (id,ip,hostname,devicetype,deviceos,dhcp_id,dns_id,query_id) VALUES (?,?,?,?,?,?,?,?)", rowrow)
+        c.execute("""insert into ip
+        (
+            id,
+            ip,
+            hostname,
+            devicetype,
+            deviceos,
+            dhcp_id,
+            dns_id,
+            query_id
+        )
+        VALUES (?,?,?,?,?,?,?,?)""", rowrow)
 
         if dns:
-            c.execute("insert into ip_role (ip_id,role_id) VALUES (?,?)",(ip_id,1))
+            c.execute("""insert into ip_role
+            (
+                ip_id,
+                role_id
+            )
+            VALUES (?,?)""", (ip_id, 1))
+
         if dhcp:
-            c.execute("insert into ip_role (ip_id,role_id) VALUES (?,?)",(ip_id,2))
+            c.execute("""insert into ip_role
+            (
+                ip_id,
+                role_id
+            )
+            VALUES (?,?)""", (ip_id, 2))
     conn.commit()
     conn.close()
 
-#Read out the current configuration.
+
+# Read out the current configuration.
 def getConfiguration():
     output = []
     conn = sqlite3.connect('/etc/NSA/data/NSA_DB.db')
